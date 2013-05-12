@@ -1,2 +1,0 @@
-use<pulley.scad>;
-pulley();
