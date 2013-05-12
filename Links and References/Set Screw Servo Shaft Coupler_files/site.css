@@ -1,0 +1,15 @@
+/* CSS definition file containing site wide stylesheets */
+
+.TextObject {
+	font-family: Arial, Helvetica, Geneva, Sans-serif;
+ 	font-size: 12px;
+ 	font-weight: normal;
+ 	font-style: normal
+}
+
+.TextNavBar {
+	font-family: Arial, Helvetica, Geneva, Sans-serif;
+ 	font-size: 12px;
+ 	font-weight: normal;
+ 	font-style: normal
+}
