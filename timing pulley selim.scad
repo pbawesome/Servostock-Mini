@@ -29,8 +29,8 @@ toothHeight = beltWidth+flangeHeight*2;
 magnetSize = 3;
 magnetHeight = 10;
 magnetDistance = 33;		//Distance from tip of magnet to beginning of servo spline
-
-shaftLength = magnetDistance-splineToPulleyHeight+toothHeight+flangeHeight;
+bearingDistance = 25;
+shaftLength = magnetDistance-splineToPulleyHeight;
 
 
 
@@ -188,8 +188,17 @@ module pulley(){
 
 module shaft(){
 	difference(){
-		translate([0,0,splineToPulleyHeight+toothHeight+flangeHeight])
-			cylinder(r = shaftDiameter/2, h = shaftLength, center = false);
+		union(){
+			//Main Shaft
+			translate([0,0,splineToPulleyHeight])
+				cylinder(r = shaftDiameter/2, h = shaftLength, center = false);
+			//Bearing Stop
+			translate([0,0,splineToPulleyHeight])
+				cylinder(r = shaftDiameter, h = bearingDistance-splineToPulleyHeight, center = false);
+		}
+		//Magnet Cutout
+		translate([-magnetSize/2, -magnetSize/2, magnetDistance-magnetHeight+eta1])
+			cube([magnetSize,magnetSize,magnetHeight]);
 	
 	}
 
