@@ -23,7 +23,7 @@ encoder_height = 30;
 encored_width = 36;
 encoder_slot_height = 30;
 encoder_slot_width = 20;
-   n open
+
 
 
  difference(){
@@ -83,6 +83,9 @@ encoder_slot_width = 20;
 	translate([servo_hole_width,20, servo_hole_height]) rotate([90,0,0]) cylinder(r=servor,h=30);
 }
 
+
+translate([-3,-28,14])
+	cube([6,1,6]);
 
 
 

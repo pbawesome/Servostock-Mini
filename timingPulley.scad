@@ -113,18 +113,22 @@ module timingPulley(
 			translate([0,0,-toothHeight/2]) teeth(pitch,numTeeth,toothWidth,notchDepth,toothHeight);
 	
 			// flanges:
-			if(flanges>=1)
-			{
 				//top flange
 				translate([0,0,0]) cylinder(h = 1, r1=outerRadius,r2=outerRadius+1);
-				translate([0,0,1]) cylinder(h = 1, r=outerRadius+1);
-				translate([0,0,-flangeHeight]) cylinder(h = flangeHeight+1, r2=outerRadius,r1=innerRadius);
-
-				
-			}
+				#translate([0,0,-flangeHeight]) cylinder(h = flangeHeight+1, r2=outerRadius,r1=innerRadius);
+				#translate([0,0,1]) cylinder(h = 1, r=outerRadius+1);
+		
+				//bottom flange
+				#translate([0,0,-toothHeight-flangeHeight/2]) cylinder(h = 1, r=outerRadius+1);
 		}
 
 	}
+
+
+
+///////////////////////////////////////////////
+///////////       MODULE TEETH     ////////////
+///////////////////////////////////////////////
 
 	module teeth(pitch,numTeeth,toothWidth,notchDepth,toothHeight)
 	{
@@ -142,6 +146,15 @@ module timingPulley(
 				tooth(toothWidth,notchDepth, toothHeight,toothType);
 		}
 	}
+
+
+
+///////////////////////////////////////////////
+///////////       MODULE TOOTH     ////////////
+///////////////////////////////////////////////
+
+
+
 	module tooth(toothWidth,notchDepth, toothHeight,toothType)
 	{
 		if(toothType == 1)
@@ -166,50 +179,7 @@ module timingPulley(
 			}
 		}
 	}
-
-	module hub(hubDiameter,hubHeight,hubSetScewDiameter)
-	{
-		if(hubSetScewDiameter == 0)
-		{
-			cylinder(h = hubHeight, r = hubDiameter/2, center =false);
-		}
-		if(hubSetScewDiameter >= 0)
-		{
-			difference()
-			{
-				cylinder(h = hubHeight, r = hubDiameter/2, center =false);
-				translate([0,0,hubHeight/2]) rotate([0,90,0]) teardrop(hubSetScewDiameter/2, hubDiameter,true);
-			}
-		}
-	}
-
-
 }
-
-
-
-module teardrop(radius,height,truncated)
-{
-	truncateMM = 1;
-	union()
-	{
-		if(truncated == true)
-		{
-		intersection()
-		{
-		translate([0,0,height/2]) scale([1,1,height]) rotate([0,0,180]) cube([radius*2.5,radius*2,1],center=true);
-		scale([1,1,height]) rotate([0,0,3*45]) cube([radius,radius,1]);
-		}
-		}
-		if(truncated == false)
-		{
-		scale([1,1,height]) rotate([0,0,3*45]) cube([radius,radius,1]);
-		}
-		#cylinder(r=radius, h = height);
-	}
-}
-
-
 
 
 
@@ -441,13 +411,14 @@ module servo_arm(params, arms) {
     
 }
 
+/*
 module demo() {
 	
 
 	difference(){
 		union(){
 		translate([0,0,-shaftLength/2])
-			cylinder(r = 18.5, h = 12.5);
+			cylinder(r = 18.5, h = 10);
 			shaft(40,shaftDiameter);	
 		}
 
@@ -467,3 +438,4 @@ module demo() {
 }
 
 demo();
+*/
