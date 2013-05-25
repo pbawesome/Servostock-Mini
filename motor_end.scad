@@ -84,7 +84,7 @@ encoder_slot_width = 20;
 }
 
 
-translate([-3,-28,14])
+translate([-3,-20,14])
 	cube([6,1,6]);
 
 
